@@ -6,7 +6,7 @@ Completed 17 September 2026.
 
 - Local production preview: http://127.0.0.1:4173/
 - Higgsfield deployment: https://honey-mustard-lebanon.higgsfield.app — currently shows a Higgsfield sign-in gate to signed-out visitors. Public customer access remains a hosting limitation. The site has **not** been listed on the community feed.
-- The repository root contains the portable React/Vite source, media, data and prerendered `dist/` production build. This is a portable version of the components authored during this task, not an export of Higgsfield's private scaffold.
+- The repository root contains the portable React/Vite source, media and data; `pnpm build` generates the prerendered `dist/` production build. This is a portable version of the components authored during this task, not an export of Higgsfield's private scaffold.
 - The source includes the original 1080p animation master; playback uses the smaller web versions.
 - Run with Node 20.19+ or 22.12+ and pnpm: `pnpm install`, `pnpm dev`; production: `pnpm build`, `pnpm preview --port 4173`. Serve `dist/` on a static host that resolves `/menu`, `/locations` and `/sources` to their directory `index.html` files. Opening HTML directly with `file://` is not supported.
 - The local preview stays available while its server process runs. It is not a public internet URL.
@@ -23,7 +23,7 @@ The Higgsfield cloud version uses React 19 and TanStack Start. The portable vers
 
 The 8-second, 1920×1080 animation was generated with Higgsfield Seedance 2.5 using restaurant food references and the official steak description. It is a photorealistic campaign interpretation, not an interactive 3D model or an exact menu photograph. It uses a slow camera move, realistic food depth and warm light. The generation changes some sauce presentation and steak slicing, so exact dish imagery remains the real restaurant photography elsewhere.
 
-- Master: `public/assets/hero-master.mp4` (approximately 15 MB)
+- Master: `media/hero-master.mp4` (approximately 15 MB)
 - Desktop: `hero.mp4` (1440 px, approximately 818 KB)
 - Mobile crop: `hero-mobile.mp4` (640 px, approximately 348 KB)
 - Exact-frame desktop/mobile WebP posters load before playback.
@@ -45,7 +45,7 @@ Sources were checked in rendered browser pages on 17 September 2026:
 2. Current opening hours for every branch. No live “Open now” claim is displayed.
 3. A valid Byblos map destination. The directory's 0,0 pin was rejected; its card says “Call for directions.”
 4. Menus and price differences outside Bayada; the separate Jal El Dib catalog was empty.
-5. The menu's **Ksara reserve du couvent, 0.00 $** entry. It is shown with an explicit confirmation note, not promoted as free.
+5. The menu's **Ksara reserve du couvent, 0.00 $** entry. Its price is displayed as “Ask branch” with an explicit confirmation note.
 6. Verified online ordering, WhatsApp or booking channels. Calls are provided; no checkout, reservation confirmation or unsupported messaging channel is implied.
 
 ## Checks completed
@@ -69,3 +69,9 @@ At the owner's request, all original-menu, directory, and Instagram navigation h
 ## Footer update — 17 September 2026
 
 Added structured site navigation, menu-category shortcuts, Bayada contact details, links to all four branch sections, branch selection, visit information, current-year copyright, back-to-top navigation and a site-preferences dialog for clearing the saved branch. All footer links are internal or telephone actions. Verified desktop and a 390-pixel local browser frame, category filtering, branch dialog, preferences clearing/disabled state and back-to-top. Production build and deployment passed.
+
+## QA and reliability update — 17 September 2026
+
+The GitHub/portable version now has persistent shareable menu filters, multiword and accent-insensitive search with coffee aliases, hydration of prerendered HTML, reliable section links, real 404 content, page-specific metadata, local fonts, larger mobile search controls, correct branch heading hierarchy, keyboard navigation dismissal, robust dialog backdrop handling, and animation pause persistence/offscreen suspension. The unused 1080p master was moved out of the public build. Typed checks, regression tests, formatting, and a local-only accessibility/failure-condition harness are included.
+
+This update targets the requested GitHub repository. The older Higgsfield deployment is not synchronized with this QA update. No community feed publication was performed. See `QA-REPORT.md` for the final test coverage.

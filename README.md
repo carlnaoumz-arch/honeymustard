@@ -18,7 +18,7 @@ pnpm build
 pnpm preview --port 4173
 ```
 
-The build prerenders Home, Menu, Locations, and the information notes page into `dist/`. Deploy that folder to a static host that resolves `/menu`, `/locations`, and `/sources` to their directory `index.html` files. Assets use root-relative paths, so serve the site at the domain root.
+The build prerenders Home, Menu, Locations, the information notes page, and a custom 404 page into `dist/`. Configure the static host to serve `404.html` with HTTP 404 for unknown pages; avoid a catch-all rewrite to the homepage. Deploy that folder to a static host that resolves `/menu`, `/locations`, and `/sources` to their directory `index.html` files. Assets use root-relative paths, so serve the site at the domain root.
 
 ## Project structure
 
@@ -32,6 +32,20 @@ The build prerenders Home, Menu, Locations, and the information notes page into 
 
 The site uses React 19 and Vite. The portable router adapter preserves the page components originally authored for TanStack Start. No backend, API key, or database is required.
 
-The original 1080p animation master is included alongside compressed desktop and mobile videos. Playback uses the compressed videos only. Menu and brand navigation stays on this website; phone calls and directions remain functional customer actions.
+The original 1080p animation master is preserved in `media/`, outside the public build. Compressed desktop/mobile videos are in `public/assets/`. Fonts are served locally with their open-source licenses. Playback uses the compressed videos only. Menu and brand navigation stays on this website; phone calls and directions remain functional customer actions.
 
 See [HANDOFF.md](HANDOFF.md) for research sources, verification gaps, media notes, and completed browser checks. Confirm outstanding branch information and the flagged wine price before a customer launch.
+
+## Verification
+
+```sh
+pnpm typecheck
+pnpm build
+pnpm test
+pnpm format:check
+pnpm qa
+```
+
+The local-only QA harness at `http://127.0.0.1:4174/__qa` offers mobile/tablet/desktop widths, accessibility audits, and controlled video/storage failure conditions. It is not included in the deployed `dist/`. See [QA-REPORT.md](QA-REPORT.md) for coverage and limitations.
+
+Menu query and category filters are shareable URL parameters and survive refresh and browser history navigation. Search supports multiple words, accent-insensitive matching, ingredients, categories, beverage sizes, and coffee aliases. Invalid routes show the 404 page.

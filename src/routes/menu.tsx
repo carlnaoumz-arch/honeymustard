@@ -1,17 +1,221 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
-import { MagnifyingGlassIcon, XIcon, ArrowUpRightIcon } from "@phosphor-icons/react";
+import { useEffect } from "react";
+import {
+  MagnifyingGlassIcon,
+  XIcon,
+  ArrowUpRightIcon,
+} from "@phosphor-icons/react";
 import { SiteShell } from "@/components/restaurant";
 import menu from "@/data/menu.json";
-export const Route=createFileRoute("/menu")({validateSearch:(s:Record<string,unknown>)=>({category:typeof s.category==="string"?s.category:"All",item:typeof s.item==="string"?s.item:""}),head:()=>({meta:[{title:"Full Menu | Honey Mustard Lebanon"},{name:"description",content:"Browse Honey Mustard's salads, grills, burgers, sandwiches, desserts and drinks with official menu prices."}]}),component:MenuPage});
-function MenuPage(){const params=Route.useSearch();const [category,setCategory]=useState(menu.some(g=>g.category===params.category)?params.category:"All");const [query,setQuery]=useState("");
-useEffect(()=>{if(params.item){const frame=requestAnimationFrame(()=>document.getElementById(params.item)?.scrollIntoView({behavior:"instant",block:"start"}));return()=>cancelAnimationFrame(frame)}},[params.item]);
-const filtered=menu.filter(g=>category==="All"||g.category===category).map(g=>({...g,items:g.items.filter(i=>(i.name+" "+i.description).toLowerCase().includes(query.trim().toLowerCase()))})).filter(g=>g.items.length);const count=filtered.reduce((n,g)=>n+g.items.length,0);
-const reset=()=>{setQuery("");setCategory("All")};
-return <SiteShell active="menu"><main tabIndex={-1} id="main" className="menu-page"><section className="page-intro"><p className="kicker">SALADS &amp; GRILLS, AND THEN SOME</p><h1>What's your<br/><em>craving?</em></h1><p>Explore the menu. Find your next favourite.</p></section>
-<div className="menu-toolbar"><div className="search-wrap"><label htmlFor="menu-search">Search the menu</label><div className="search-field"><MagnifyingGlassIcon size={21}/><input id="menu-search" type="search" value={query} onChange={e=>setQuery(e.target.value)} placeholder="Try steak, avocado, or coffee" autoComplete="off"/>{query&&<button onClick={()=>setQuery("")} aria-label="Clear search"><XIcon size={18}/></button>}</div></div><div className="menu-source"><strong>Bayada menu</strong><span>Prices shown as listed in $. Checked 17 September 2026.</span></div></div>
-<nav className="menu-categories" aria-label="Filter menu by category">{["All",...menu.map(g=>g.category)].map(c=><button key={c} onClick={()=>setCategory(c)} aria-pressed={c===category}>{c}</button>)}</nav>
-<div className="menu-summary"><p aria-live="polite">{count} {count===1?"item":"items"}{category!=="All"?" · "+category:" · Food & beverages"}</p>{(query||category!=="All")&&<button onClick={reset}>Reset filters <XIcon size={15}/></button>}</div>
-<div className="menu-layout"><aside className="menu-aside"><span>YOUR MENU</span><h2>A little<br/>of everything.</h2><p>This is the menu published for Bayada. Menus and prices at other branches have not been confirmed.</p><a href="/locations">Check with your branch <ArrowUpRightIcon size={17}/></a><img src="/assets/restaurant-2.jpg" alt="Actual Honey Mustard salad photography" width="280" height="300" loading="lazy"/></aside>
-<div className="menu-results">{count===0?<div className="empty-state"><MagnifyingGlassIcon size={38}/><h2>No cravings found.</h2><p>No menu items match “{query}”{category!=="All"?" in "+category:""}. Try another word or reset your filters.</p><button className="reset-action" onClick={reset}>Show all menu items</button></div>:filtered.map(group=><section className="menu-group" key={group.category}><div className="menu-group-title"><h2>{group.category}</h2><span>{group.items.length.toString().padStart(2,"0")}</span></div>{group.items.map(item=><article id={item.id} key={item.id} className={params.item===item.id?"menu-item highlighted":"menu-item"}><div className="menu-item-copy"><h3>{item.name}</h3>{item.description&&<p>{item.description}</p>}{item.price===0&&<p className="price-note">Price awaiting confirmation. Please check with your branch.</p>}</div><div className="item-prices">{item.sizes.length?item.sizes.map(s=><div key={s.name}><span>{s.name}</span><strong>{s.price.toFixed(2)} $</strong></div>):<strong>{item.price?.toFixed(2)} $</strong>}</div></article>)}</section>)}</div></div>
-<div className="menu-footnote"><p>Explore all 81 items, including beverage sizes and add-ons. Ask your branch about availability or additional choices.</p></div></main></SiteShell>}
+import { updateSearch } from "@/preview-router";
+import { filterMenu, formatPrice } from "@/lib/menu-search.mjs";
+export const Route = createFileRoute("/menu")({
+  validateSearch: (s: Record<string, unknown>) => ({
+    category: typeof s.category === "string" ? s.category : "All",
+    q: typeof s.q === "string" ? s.q.slice(0, 200) : "",
+    item: typeof s.item === "string" ? s.item : "",
+  }),
+  head: () => ({
+    meta: [
+      { title: "Full Menu | Honey Mustard Lebanon" },
+      {
+        name: "description",
+        content:
+          "Browse Honey Mustard's salads, grills, burgers, sandwiches, desserts and drinks with official menu prices.",
+      },
+    ],
+  }),
+  component: MenuPage,
+});
+function MenuPage() {
+  const params = Route.useSearch();
+  const category = menu.some((g) => g.category === params.category)
+    ? params.category
+    : "All";
+  const query = params.q;
+  const setQuery = (q: string) => updateSearch({ q, item: null });
+  const setCategory = (value: string) =>
+    updateSearch(
+      { category: value === "All" ? null : value, item: null },
+      true,
+    );
+  useEffect(() => {
+    const active = document.querySelector<HTMLButtonElement>(
+      '.menu-categories [aria-pressed="true"]',
+    );
+    if (active && active.parentElement)
+      active.parentElement.scrollTo({
+        left: active.offsetLeft - active.parentElement.offsetLeft - 20,
+        behavior: "instant",
+      });
+  }, [category]);
+  useEffect(() => {
+    if (params.item) {
+      const frame = requestAnimationFrame(() =>
+        document
+          .getElementById(params.item)
+          ?.scrollIntoView({ behavior: "instant", block: "start" }),
+      );
+      return () => cancelAnimationFrame(frame);
+    }
+  }, [params.item]);
+  const filtered = filterMenu(menu, category, query);
+  const count = filtered.reduce((n, g) => n + g.items.length, 0);
+  const reset = () =>
+    updateSearch({ q: null, category: null, item: null }, true);
+  return (
+    <SiteShell active="menu">
+      <main tabIndex={-1} id="main" className="menu-page">
+        <section className="page-intro">
+          <p className="kicker">SALADS &amp; GRILLS, AND THEN SOME</p>
+          <h1>
+            What's your
+            <br />
+            <em>craving?</em>
+          </h1>
+          <p>Explore the menu. Find your next favourite.</p>
+        </section>
+        <div className="menu-toolbar">
+          <div className="search-wrap">
+            <label htmlFor="menu-search">Search the menu</label>
+            <div className="search-field">
+              <MagnifyingGlassIcon size={21} />
+              <input
+                id="menu-search"
+                type="search"
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
+                placeholder="Try steak, avocado, or coffee"
+                autoComplete="off"
+                maxLength={200}
+                enterKeyHint="search"
+              />
+              {query && (
+                <button onClick={() => setQuery("")} aria-label="Clear search">
+                  <XIcon size={18} />
+                </button>
+              )}
+            </div>
+          </div>
+          <div className="menu-source">
+            <strong>Bayada menu</strong>
+            <span>Prices shown as listed in $. Checked 17 September 2026.</span>
+          </div>
+        </div>
+        <nav className="menu-categories" aria-label="Filter menu by category">
+          {["All", ...menu.map((g) => g.category)].map((c) => (
+            <button
+              key={c}
+              onClick={() => setCategory(c)}
+              aria-pressed={c === category}
+            >
+              {c}
+            </button>
+          ))}
+        </nav>
+        <div className="menu-summary">
+          <p aria-live="polite">
+            {count} {count === 1 ? "item" : "items"}
+            {category !== "All" ? " · " + category : " · Food & beverages"}
+          </p>
+          {(query || category !== "All") && (
+            <button onClick={reset}>
+              Reset filters <XIcon size={15} />
+            </button>
+          )}
+        </div>
+        <div className="menu-layout">
+          <aside className="menu-aside">
+            <span>YOUR MENU</span>
+            <h2>
+              A little
+              <br />
+              of everything.
+            </h2>
+            <p>
+              This is the menu published for Bayada. Menus and prices at other
+              branches have not been confirmed.
+            </p>
+            <a href="/locations">
+              Check with your branch <ArrowUpRightIcon size={17} />
+            </a>
+            <img
+              src="/assets/restaurant-2.jpg"
+              alt="Actual Honey Mustard salad photography"
+              width="280"
+              height="300"
+              loading="lazy"
+            />
+          </aside>
+          <div className="menu-results">
+            {count === 0 ? (
+              <div className="empty-state">
+                <MagnifyingGlassIcon size={38} />
+                <h2>No cravings found.</h2>
+                <p>
+                  No menu items match “{query}”
+                  {category !== "All" ? " in " + category : ""}. Try another
+                  word or reset your filters.
+                </p>
+                <button className="reset-action" onClick={reset}>
+                  Show all menu items
+                </button>
+              </div>
+            ) : (
+              filtered.map((group) => (
+                <section className="menu-group" key={group.category}>
+                  <div className="menu-group-title">
+                    <h2>{group.category}</h2>
+                    <span>
+                      {group.items.length.toString().padStart(2, "0")}
+                    </span>
+                  </div>
+                  {group.items.map((item) => (
+                    <article
+                      id={item.id}
+                      key={item.id}
+                      className={
+                        params.item === item.id
+                          ? "menu-item highlighted"
+                          : "menu-item"
+                      }
+                    >
+                      <div className="menu-item-copy">
+                        <h3>{item.name}</h3>
+                        {item.description && <p>{item.description}</p>}
+                        {item.price === 0 && (
+                          <p className="price-note">
+                            Price awaiting confirmation. Please check with your
+                            branch.
+                          </p>
+                        )}
+                      </div>
+                      <div className="item-prices">
+                        {item.sizes.length ? (
+                          item.sizes.map((s) => (
+                            <div key={s.name}>
+                              <span>{s.name}</span>
+                              <strong>{formatPrice(s.price)}</strong>
+                            </div>
+                          ))
+                        ) : (
+                          <strong>{formatPrice(item.price)}</strong>
+                        )}
+                      </div>
+                    </article>
+                  ))}
+                </section>
+              ))
+            )}
+          </div>
+        </div>
+        <div className="menu-footnote">
+          <p>
+            Explore all 81 items, including beverage sizes and add-ons. Ask your
+            branch about availability or additional choices.
+          </p>
+        </div>
+      </main>
+    </SiteShell>
+  );
+}
