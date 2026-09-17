@@ -27,7 +27,7 @@ The 8-second, 1920×1080 animation was generated with Higgsfield Seedance 2.5 us
 - Desktop: `hero.mp4` (1440 px, approximately 818 KB)
 - Mobile crop: `hero-mobile.mp4` (640 px, approximately 348 KB)
 - Exact-frame desktop/mobile WebP posters load before playback.
-- Muted inline playback, a pause button, reduced-motion/data-saving handling and static autoplay-failure fallback are implemented. No required content depends on the video.
+- Muted inline autoplay and continuous looping are enabled, without a pause/resume button, as requested by the owner. Existing saved pause preferences and app-level motion/data-saving gates no longer stop playback. A poster remains if the browser refuses playback or media fails. No required content depends on the video.
 
 ## Sources and verification
 
@@ -75,3 +75,7 @@ Added structured site navigation, menu-category shortcuts, Bayada contact detail
 The GitHub/portable version now has persistent shareable menu filters, multiword and accent-insensitive search with coffee aliases, hydration of prerendered HTML, reliable section links, real 404 content, page-specific metadata, local fonts, larger mobile search controls, correct branch heading hierarchy, keyboard navigation dismissal, robust dialog backdrop handling, and animation pause persistence/offscreen suspension. The unused 1080p master was moved out of the public build. Typed checks, regression tests, formatting, and a local-only accessibility/failure-condition harness are included.
 
 This update targets the requested GitHub repository. The older Higgsfield deployment is not synchronized with this QA update. No community feed publication was performed. See `QA-REPORT.md` for the final test coverage.
+
+## Hero autoplay update — 17 September 2026
+
+Removed the hero pause/resume button and saved pause state. The existing mobile and desktop files now use native muted inline autoplay, continuous looping, eager loading, and playback retries on readiness, returning to the page, or an ordinary touch/click. The site no longer pauses the video when it scrolls offscreen. Video files, posters, crop, quality, timing and hero layout are unchanged. Browser-level autoplay restrictions remain outside the website's control.

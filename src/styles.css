@@ -343,20 +343,7 @@ p {
   color: var(--cream);
   text-shadow: 0 1px 6px #171b19;
 }
-.film-control {
-  position: absolute;
-  right: 45px;
-  bottom: 27px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  border: 1px solid #7b8075;
-  background: rgba(23, 27, 25, 0.75);
-  border-radius: 999px;
-  padding: 10px 12px;
-  font-size: 10px;
-  min-height: 44px;
-}
+
 .category-rail {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -1413,10 +1400,7 @@ p {
     font-size: 8px;
     letter-spacing: 0.1em;
   }
-  .film-control {
-    right: 21px;
-    bottom: 18px;
-  }
+
   .category-rail {
     overflow-x: auto;
     display: flex;

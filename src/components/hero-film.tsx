@@ -1,84 +1,53 @@
 import { useEffect, useRef, useState } from "react";
-import { PauseIcon, PlayIcon } from "@phosphor-icons/react";
+
 export function HeroFilm() {
-  const container = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
-  const userPaused = useRef(false);
-  const visible = useRef(false);
   const [source, setSource] = useState<string>();
-  const [playing, setPlaying] = useState(false);
   const [painted, setPainted] = useState(false);
   const [failed, setFailed] = useState(false);
-  const chooseSource = () =>
-    window.innerWidth < 700 ? "/assets/hero-mobile.mp4" : "/assets/hero.mp4";
+
   useEffect(() => {
-    try {
-      userPaused.current =
-        sessionStorage.getItem("hm-animation-paused") === "true";
-    } catch {
-      /* Storage is optional. */
-    }
-    const media = matchMedia("(prefers-reduced-motion: reduce)");
-    const connection = (
-      navigator as Navigator & {
-        connection?: { saveData?: boolean; effectiveType?: string };
-      }
-    ).connection;
-    const sync = () => {
-      if (
-        media.matches ||
-        connection?.saveData ||
-        ["slow-2g", "2g"].includes(connection?.effectiveType || "")
-      ) {
-        video.current?.pause();
-        setSource(undefined);
-        setPainted(false);
-      } else setSource(chooseSource());
-    };
-    sync();
-    media.addEventListener("change", sync);
-    return () => media.removeEventListener("change", sync);
-  }, []);
-  useEffect(() => {
-    if (!source || !video.current || !container.current) return;
-    const element = video.current;
-    const sync = () => {
-      if (
-        visible.current &&
-        document.visibilityState === "visible" &&
-        !userPaused.current
-      ) {
-        void element.play().catch(() => setPlaying(false));
-      } else element.pause();
-    };
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        visible.current = entry.isIntersecting;
-        sync();
-      },
-      { threshold: 0.05 },
+    // Keep the existing, full-quality responsive video files.
+    setSource(
+      window.innerWidth < 700 ? "/assets/hero-mobile.mp4" : "/assets/hero.mp4",
     );
-    observer.observe(container.current);
-    document.addEventListener("visibilitychange", sync);
+  }, []);
+
+  useEffect(() => {
+    const element = video.current;
+    if (!source || !element) return;
+    // Set both the attributes and properties before requesting mobile playback.
+    element.defaultMuted = true;
+    element.muted = true;
+    element.playsInline = true;
+    const play = () => {
+      if (document.visibilityState !== "hidden" && element.paused) {
+        // A browser can still decline autoplay. Keep the poster and retry on
+        // readiness, returning to the page, or the first ordinary interaction.
+        void element.play().catch(() => {});
+      }
+    };
+    element.addEventListener("loadeddata", play);
+    element.addEventListener("canplay", play);
+    document.addEventListener("visibilitychange", play);
+    window.addEventListener("pageshow", play);
+    document.addEventListener("touchstart", play, { passive: true });
+    document.addEventListener("pointerdown", play, { passive: true });
+    document.addEventListener("keydown", play);
+    play();
     return () => {
-      observer.disconnect();
-      document.removeEventListener("visibilitychange", sync);
+      element.removeEventListener("loadeddata", play);
+      element.removeEventListener("canplay", play);
+      document.removeEventListener("visibilitychange", play);
+      window.removeEventListener("pageshow", play);
+      document.removeEventListener("touchstart", play);
+      document.removeEventListener("pointerdown", play);
+      document.removeEventListener("keydown", play);
       element.pause();
     };
   }, [source]);
-  const toggle = () => {
-    userPaused.current = playing;
-    try {
-      sessionStorage.setItem("hm-animation-paused", String(playing));
-    } catch {
-      /* Storage is optional. */
-    }
-    if (playing) video.current?.pause();
-    else if (source) void video.current?.play().catch(() => setPlaying(false));
-    else setSource(chooseSource());
-  };
   return (
-    <div ref={container} className="hero-film">
+    <div className="hero-film">
       <picture>
         <source
           media="(max-width: 699px)"
@@ -98,18 +67,16 @@ export function HeroFilm() {
           ref={video}
           className={painted ? "is-painted" : ""}
           src={source}
+          autoPlay
           muted
           playsInline
           loop
-          preload="metadata"
+          preload="auto"
           onPlaying={() => {
-            setPlaying(true);
             setPainted(true);
           }}
-          onPause={() => setPlaying(false)}
           onError={() => {
             setFailed(true);
-            setPlaying(false);
             setPainted(false);
           }}
           aria-hidden="true"
@@ -117,20 +84,6 @@ export function HeroFilm() {
       )}
       <div className="film-shade" />
       <div className="film-caption">STEAK. SAUCE. THE WHOLE EXPERIENCE.</div>
-      {!failed && (
-        <button
-          className="film-control"
-          onClick={toggle}
-          aria-label={playing ? "Pause hero animation" : "Play hero animation"}
-        >
-          {playing ? (
-            <PauseIcon size={17} weight="fill" />
-          ) : (
-            <PlayIcon size={17} weight="fill" />
-          )}
-          <span>{playing ? "Pause" : "Play"}</span>
-        </button>
-      )}
     </div>
   );
 }

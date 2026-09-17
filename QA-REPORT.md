@@ -2,7 +2,13 @@
 
 Tested 17 September 2026 against the portable GitHub production build using the Codex in-app browser (Chromium), local production pages, a local-only responsive/failure-condition harness, TypeScript, Node's test runner, and axe-core 4.10.3.
 
-## Result
+## Latest follow-up: automatic hero playback
+
+At the owner's request, removed pause/resume controls, saved pause behavior, offscreen pausing, and app-level reduced-motion/data-saving playback gates. This supersedes the earlier playback assertions below. The actual desktop/mobile videos and posters are unchanged.
+
+Verified fresh 390px mobile and 1280px desktop loading with no tap inside the site: video playing, muted, autoplay/loop enabled, no controls, zero hero buttons, zero runtime errors, and no horizontal overflow. Reload starts automatically. The simulated reduced-motion and data-saving settings no longer suppress playback. Production build, TypeScript and all seven existing regression tests passed. Actual phone/browser policies can still decline autoplay; readiness, page return and ordinary-touch retries are provided, with the poster as fallback. A physical iPhone was not available for this check.
+
+## Earlier full-site audit result
 
 All final checks below passed. No unresolved application bugs were found within this coverage. This is a tested release, not a guarantee against every possible device, browser, hosting configuration, or future content change.
 
