@@ -1,0 +1,42 @@
+[
+  {
+    "id": "bayada",
+    "name": "Bayada",
+    "address": "Level Two Bayada",
+    "phone": "+96178885839",
+    "displayPhone": "+961 78 885 839",
+    "hours": "11:00 AM – midnight",
+    "official": true,
+    "destination": "33.9182459,35.6160809"
+  },
+  {
+    "id": "byblos",
+    "name": "Byblos / Jbeil",
+    "address": "Old Souk",
+    "phone": "+96170507877",
+    "displayPhone": "+961 70 507 877",
+    "hours": "12:00 PM – midnight",
+    "official": false,
+    "destination": null
+  },
+  {
+    "id": "badaro",
+    "name": "Badaro",
+    "address": "Kfoury Street",
+    "phone": "+96181382345",
+    "displayPhone": "+961 81 382 345",
+    "hours": "12:00 PM – midnight",
+    "official": false,
+    "destination": "33.873437,35.5166232"
+  },
+  {
+    "id": "jal-el-dib",
+    "name": "Jal El Dib",
+    "address": "Main road",
+    "phone": "+96181843060",
+    "displayPhone": "+961 81 843 060",
+    "hours": "12:00 PM – midnight",
+    "official": false,
+    "destination": "33.9074933,35.5805396"
+  }
+]

@@ -1,0 +1,1 @@
+export function createFileRoute(path:string){return (options:any)=>({options,useSearch:()=>{const params=typeof window==="undefined"?{}:Object.fromEntries(new URLSearchParams(window.location.search));return options.validateSearch?options.validateSearch(params):params;}})}

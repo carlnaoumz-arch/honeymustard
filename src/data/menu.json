@@ -1,0 +1,713 @@
+[
+  {
+    "category": "Appetizers",
+    "items": [
+      {
+        "id": "cheesy-garlic-bread",
+        "name": "CHEESY GARLIC BREAD",
+        "price": 5,
+        "description": "Oven-baked bread topped with garlic butter, mozzarella, and cheddar cheese.",
+        "sizes": []
+      },
+      {
+        "id": "fries-cafe-de-paris",
+        "name": "Fries cafe de paris",
+        "price": 6,
+        "description": "French fries topped with our signature gravy and shredded parmesan",
+        "sizes": []
+      },
+      {
+        "id": "curly-fries",
+        "name": "Curly fries",
+        "price": 7,
+        "description": "Golden crispy curly fries served with honey mustard dip",
+        "sizes": []
+      },
+      {
+        "id": "truffle-baked-potato",
+        "name": "Truffle Baked Potato",
+        "price": 6,
+        "description": "Homemade baked potato topped with truffle cream and cheese",
+        "sizes": []
+      },
+      {
+        "id": "creamy-sauteed-mushrooms",
+        "name": "Creamy sauteed mushrooms",
+        "price": 8,
+        "description": "Sauteed fresh mushrooms topped with  cheese creamy sauce baked to perfection",
+        "sizes": []
+      },
+      {
+        "id": "chicken-tenders",
+        "name": "Chicken tenders",
+        "price": 8,
+        "description": "Breaded chicken breast fried to perfection, served with your choice of honey mustard or BBQ",
+        "sizes": []
+      },
+      {
+        "id": "volcanic-shrimp",
+        "name": "Volcanic shrimp",
+        "price": 9,
+        "description": "Golden crispy shrimp popcorn toasted in a spicy volcanic sauce",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Salad",
+    "items": [
+      {
+        "id": "go-green",
+        "name": "Go Green",
+        "price": 9,
+        "description": "Mixed greens, cucumber, soya beans, cherry tomato, avocado, toasted almonds, sunflower seeds, parmesan cheese, balsamic dressing.",
+        "sizes": []
+      },
+      {
+        "id": "caesar-salad",
+        "name": "Caesar salad",
+        "price": 10,
+        "description": "Romaine lettuce, baby spinach, avocado, shaved parmesan cheese & croutons with caesar sauce",
+        "sizes": []
+      },
+      {
+        "id": "red-quinoa",
+        "name": "Red Quinoa",
+        "price": 11,
+        "description": "Red quinoa, mix tomatoes, apple & pomegranate with light balsamic sauce, cucumbers, black raisins, iceberg, baby rocca, and walnuts",
+        "sizes": []
+      },
+      {
+        "id": "goat-cheese-salad",
+        "name": "Goat cheese salad",
+        "price": 14,
+        "description": "Goat cheese, mix greens, fig jam, cherry tomato, walnuts, balsamic dressing",
+        "sizes": []
+      },
+      {
+        "id": "wavy-tuna-salad",
+        "name": "Wavy tuna salad",
+        "price": 11,
+        "description": "Fussili pasta mixed with tuna, shredded carrots, cheese, lettuce, olives, corn, mushrooms, cherry tomato, and pickles, tossed in our creamy lemon mayo sauce.",
+        "sizes": []
+      },
+      {
+        "id": "fiesta-crab-salad",
+        "name": "Fiesta crab salad",
+        "price": 12,
+        "description": "Surimi crab with ginger, shredded cucumber, lettuce, rocca, corn, mushrooms, avocado, and orange, topped with sesame seed.",
+        "sizes": []
+      },
+      {
+        "id": "salmon-asian-bowl",
+        "name": "Salmon Asian bowl",
+        "price": 18,
+        "description": "Salmon, kale, black rice, avocado, spring onion, edamame, toasted sesame, pickled ginger, Asian sauce",
+        "sizes": []
+      },
+      {
+        "id": "make-your-own-salad-half",
+        "name": "Make your own salad half",
+        "price": 8,
+        "description": "Choose 2 greens,4 toppings, 1 grain, 1 crunch, 1 dairy, 1 dressing",
+        "sizes": []
+      },
+      {
+        "id": "make-your-own-salad-full",
+        "name": "Make your own salad Full",
+        "price": 15,
+        "description": "Choose 2 greens,4 toppings, 1 grain, 1 crunch, 1 dairy, 1 dressing",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Main course",
+    "items": [
+      {
+        "id": "ribeye",
+        "name": "Ribeye",
+        "price": 17,
+        "description": "Chargrilled Angus ribeye with our signature grave served with french fries and house salad",
+        "sizes": []
+      },
+      {
+        "id": "beef-fillet",
+        "name": "Beef Fillet",
+        "price": 17,
+        "description": "Chargrilled beef fillet with our signature gravy served with french fries and house salad",
+        "sizes": []
+      },
+      {
+        "id": "chicken-platter",
+        "name": "Chicken platter",
+        "price": 14,
+        "description": "Chargrilled chicken breast with our signature gravy served with french fries and house salad",
+        "sizes": []
+      },
+      {
+        "id": "escalope",
+        "name": "Escalope",
+        "price": 15,
+        "description": "Breaded chicken fillet gloden fries served with your choice of sauce fries and salad",
+        "sizes": []
+      },
+      {
+        "id": "salmon",
+        "name": "Salmon",
+        "price": 19,
+        "description": "Chargrilled salmon fillet with our signature gravy served with french fries and honey mustard",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Burgers and Sandwiches",
+    "items": [
+      {
+        "id": "mozzarella-burger",
+        "name": "Mozzarella burger",
+        "price": 10,
+        "description": "Deep fried breaded Mozzarella, served with pickles, lettuce, tomato and cocktail sauce.",
+        "sizes": []
+      },
+      {
+        "id": "classic-burger",
+        "name": "Classic burger",
+        "price": 11,
+        "description": "Burger patty, cheddar slice, grilled onions, grilled tomato, mustard, ketchup.",
+        "sizes": []
+      },
+      {
+        "id": "swiss-mushroom-burger",
+        "name": "Swiss mushroom burger",
+        "price": 12,
+        "description": "Burger patty, sauteed mushrooms, emmental cheese, and our signature steak sauce.",
+        "sizes": []
+      },
+      {
+        "id": "burger-entrecote",
+        "name": "Burger entrecote",
+        "price": 13,
+        "description": "Burger patty, emmental cheese, and entrecote sauce.",
+        "sizes": []
+      },
+      {
+        "id": "chicken-burger",
+        "name": "Chicken burger",
+        "price": 9,
+        "description": "Grilled chicken breast, pickles, tomato, and lettuce with garlic spread. Add cheddar: 2$",
+        "sizes": []
+      },
+      {
+        "id": "tender-burger",
+        "name": "Tender burger",
+        "price": 9,
+        "description": "Crispy fried chicken tenders, topped with pickles, tomato, and lettuce, served with BBQ and honey mustard sauce. Add cheddar: 2$",
+        "sizes": []
+      },
+      {
+        "id": "chicken-burger-entrecote",
+        "name": "Chicken burger entrecote",
+        "price": 11,
+        "description": "Chicken fillet, emmental cheese, and entrecote sauce.",
+        "sizes": []
+      },
+      {
+        "id": "ranchy-bbq-burger",
+        "name": "Ranchy BBQ Burger",
+        "price": 13,
+        "description": "Mustard glazed bun topped with ranchy BBQ sauce, lettuce, pickles, tomatoes, beef patty, cheddar cheesy, and crispy bacon.",
+        "sizes": []
+      },
+      {
+        "id": "h-special-burger",
+        "name": "H-Special burger",
+        "price": 13,
+        "description": "Burger meat, cheese, pickles, lettuce, tomato and cocktail sauce.",
+        "sizes": []
+      },
+      {
+        "id": "brisket-burger",
+        "name": "Brisket burger",
+        "price": 15,
+        "description": "Pulled brisket beef mixed with caramelized onions and BBQ HM.",
+        "sizes": []
+      },
+      {
+        "id": "steak-sandwich",
+        "name": "Steak sandwich",
+        "price": 13,
+        "description": "Homemade french baguette stuffed with chargrilled beef fillet with our signature gravy and Fries",
+        "sizes": []
+      },
+      {
+        "id": "steak-et-frites-sandwich",
+        "name": "STEAK ET FRITES SANDWICH",
+        "price": 13,
+        "description": "Homemade french baguette stuffed with chargrilled beef fillet with our signature sauce and fries.",
+        "sizes": []
+      },
+      {
+        "id": "ribeye-et-frites",
+        "name": "Ribeye et frites",
+        "price": 11,
+        "description": "Grilled ribeye steak with French Fries and your choice of sauce.",
+        "sizes": []
+      },
+      {
+        "id": "chicken-sub",
+        "name": "Chicken sub",
+        "price": 10,
+        "description": "Grilled chicken breast with lettuce, tomatoes, pickles, and garlic mayo spread.",
+        "sizes": []
+      },
+      {
+        "id": "chicken-avocado-sandwich",
+        "name": "Chicken avocado sandwich",
+        "price": 12,
+        "description": "Grilled chicken breast with lettuce, fresh avocado, and our special honey mustard spread.",
+        "sizes": []
+      },
+      {
+        "id": "chicken-et-frites",
+        "name": "Chicken et frites",
+        "price": 11,
+        "description": "Fresh baked French baguette stuffed with chargrilled chicken breast with our signature sauce and fries.",
+        "sizes": []
+      },
+      {
+        "id": "escalope-sandwich",
+        "name": "Escalope sandwich",
+        "price": 11,
+        "description": "Crispy golden escalope served with french fries and your choice of sauce",
+        "sizes": []
+      },
+      {
+        "id": "crispy-tender-sub",
+        "name": "Crispy tender sub",
+        "price": 10,
+        "description": "Deep-fried chicken tenders with lettuce, pickles, and a honey mustard spread.",
+        "sizes": []
+      },
+      {
+        "id": "volcanic-shrimp-sandwich",
+        "name": "Volcanic shrimp sandwich",
+        "price": 14,
+        "description": "Crispy golden shrimp pops fried to perfection mixed with our special volcanic sauce, avocado and iceberg lettuce",
+        "sizes": []
+      },
+      {
+        "id": "smoked-salmon-sandwich",
+        "name": "Smoked salmon sandwich",
+        "price": 15,
+        "description": "Scottish smoked salmon in french baguette with our special mustard tartar, diced lemon and served with side salad",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Add ons",
+    "items": [
+      {
+        "id": "white-baguette",
+        "name": "White baguette",
+        "price": 1.2,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "brown-baguette",
+        "name": "Brown baguette",
+        "price": 1.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "side-salad",
+        "name": "Side salad",
+        "price": 3,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "replace-with-caesar-salad",
+        "name": "Replace with Caesar salad",
+        "price": 2,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "replace-with-curly-fries",
+        "name": "Replace with curly fries",
+        "price": 3,
+        "description": "",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Dessert",
+    "items": [
+      {
+        "id": "pain-perdu",
+        "name": "Pain perdu",
+        "price": 11,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "fondant-chocolate",
+        "name": "Fondant chocolate",
+        "price": 8,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "honey-cake",
+        "name": "HONEY CAKE",
+        "price": 9,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "brookie",
+        "name": "Brookie",
+        "price": 11,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "ice-cream",
+        "name": "ICE CREAM",
+        "price": 9,
+        "description": "",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Cold Beverages",
+    "items": [
+      {
+        "id": "water-s",
+        "name": "WATER S",
+        "price": 1.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "soft-drinks",
+        "name": "SOFT DRINKS",
+        "price": 3,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "ice-tea",
+        "name": "ICE TEA",
+        "price": 3,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "water-l",
+        "name": "WATER L",
+        "price": 2.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "sparkling-water-small",
+        "name": "SPARKLING WATER SMALL",
+        "price": 2.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "sparkling-water-big",
+        "name": "SPARKLING WATER BIG",
+        "price": 6,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "lemonade",
+        "name": "LEMONADE",
+        "price": 4,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "fresh-orange-juice",
+        "name": "FRESH ORANGE JUICE",
+        "price": 4,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "almaza",
+        "name": "ALMAZA",
+        "price": 5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "beirut-beer",
+        "name": "BEIRUT BEER",
+        "price": 5,
+        "description": "",
+        "sizes": []
+      }
+    ]
+  },
+  {
+    "category": "Alcohol",
+    "items": [
+      {
+        "id": "ksara-blanc-de-blanc",
+        "name": "Ksara blanc de blanc",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 5
+          },
+          {
+            "name": "BTL",
+            "price": 30
+          }
+        ]
+      },
+      {
+        "id": "ksara-sunset",
+        "name": "Ksara sunset",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 5
+          },
+          {
+            "name": "BTL",
+            "price": 30
+          }
+        ]
+      },
+      {
+        "id": "ksara-reserve-du-couvent",
+        "name": "Ksara reserve du couvent",
+        "price": 0,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "ixsir-white",
+        "name": "IXSIR WHITE",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 8
+          },
+          {
+            "name": "BTL",
+            "price": 45
+          }
+        ]
+      },
+      {
+        "id": "ixsir-red",
+        "name": "IXSIR RED",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 8
+          },
+          {
+            "name": "BTL",
+            "price": 45
+          }
+        ]
+      },
+      {
+        "id": "ixsir-rose",
+        "name": "IXSIR ROSE",
+        "price": 45,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "chivas",
+        "name": "CHIVAS",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 11
+          },
+          {
+            "name": "BTL",
+            "price": 110
+          }
+        ]
+      },
+      {
+        "id": "astoria-tiemo",
+        "name": "ASTORIA TIEMO",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 8
+          },
+          {
+            "name": "BTL",
+            "price": 65
+          }
+        ]
+      },
+      {
+        "id": "black-label",
+        "name": "BLACK LABEL",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 11
+          },
+          {
+            "name": "BTL",
+            "price": 115
+          }
+        ]
+      },
+      {
+        "id": "russian-standard",
+        "name": "RUSSIAN STANDARD",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 8
+          },
+          {
+            "name": "BTL",
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "grey-goose",
+        "name": "GREY GOOSE",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 12
+          },
+          {
+            "name": "BTL",
+            "price": 125
+          }
+        ]
+      },
+      {
+        "id": "gordon-s",
+        "name": "GORDON'S",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 8
+          },
+          {
+            "name": "BTL",
+            "price": 80
+          }
+        ]
+      },
+      {
+        "id": "hendricks",
+        "name": "HENDRICKS",
+        "price": null,
+        "description": "",
+        "sizes": [
+          {
+            "name": "GLS",
+            "price": 13
+          },
+          {
+            "name": "BTL",
+            "price": 130
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "category": "Hot Beverages",
+    "items": [
+      {
+        "id": "espresso",
+        "name": "ESPRESSO",
+        "price": 3,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "doppio",
+        "name": "DOPPIO",
+        "price": 5.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "macchiato",
+        "name": "MACCHIATO",
+        "price": 6,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "cappuccino",
+        "name": "CAPPUCCINO",
+        "price": 5.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "latte",
+        "name": "LATTE",
+        "price": 6,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "flavored-latte",
+        "name": "FLAVORED LATTE",
+        "price": 6.5,
+        "description": "",
+        "sizes": []
+      },
+      {
+        "id": "tea",
+        "name": "TEA",
+        "price": 3,
+        "description": "",
+        "sizes": []
+      }
+    ]
+  }
+]
